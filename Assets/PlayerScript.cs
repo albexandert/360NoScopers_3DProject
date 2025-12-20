@@ -25,7 +25,7 @@ public class PlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); //sets rb to the rigidbody of this object
         crouch = false;
-        crouchHeight = 1.5f;
+        crouchHeight = 1f;
     }
 
     // Update is called once per frame
