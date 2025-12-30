@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); //sets rb to the rigidbody of this object
         crouch = false;
+        itemHeld = false;
         crouchHeight = 1f;
     }
 
@@ -67,6 +68,32 @@ public class PlayerScript : MonoBehaviour
         {
             //adds an instant force to the player in the upward direction multiplied by the value of jumpforce
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!itemHeld)
+            {
+                if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 6f, interactMask))
+                {
+                    itemHeld = true;
+                    currentItem = reach.collider.gameObject;
+                    currentItem.GetComponent<BaseItemScript>().isHeld = true;
+                    currentItem.GetComponent<Rigidbody>().useGravity = false;
+                    currentItem.GetComponent<Rigidbody>().isKinematic = true;
+                }
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (itemHeld)
+            {
+                itemHeld = false;
+                currentItem.GetComponent<BaseItemScript>().isHeld = false;
+                currentItem.GetComponent<Rigidbody>().useGravity = true;
+                currentItem.GetComponent<Rigidbody>().isKinematic = false;
+                currentItem = null;
+            }
         }
     }
 
