@@ -23,7 +23,6 @@ public class BaseItemScript : MonoBehaviour
         {
             transform.parent = cam.transform;
             transform.position = itemPosition.position;
-            transform.rotation = itemPosition.rotation;
         }
         else
         {

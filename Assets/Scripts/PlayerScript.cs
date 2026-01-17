@@ -20,12 +20,20 @@ public class PlayerScript : MonoBehaviour
     public GameObject currentItem; //hold the GameObject that the player is actively holding
     public Transform cameraPosition; //hold the Transform of the main camera
     public LayerMask interactMask; //holds the layers that out player will be able to intersct with
+    public Transform targetPoint;
+    public GameObject projectile;
+    public Transform spawnPoint;
+    public float fireRate;
+    private bool canFire;
+    public float firePower;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>(); //sets rb to the rigidbody of this object
         crouch = false;
         itemHeld = false;
+        targetPoint = GameObject.FindGameObjectWithTag("ShotTarget").transform;
+        spawnPoint = GameObject.Find("ShotSpawner").transform;
         crouchHeight = 1f;
     }
 
@@ -95,6 +103,26 @@ public class PlayerScript : MonoBehaviour
                 currentItem = null;
             }
         }
+
+        if (itemHeld && currentItem.CompareTag("Weapon"))
+        {
+           canFire = true;
+           if(Input.GetKeyDown(KeyCode.Mouse0) && canFire)
+            {
+                GameObject currentProjectile =  Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
+                currentProjectile.GetComponent<Rigidbody>().AddForce(currentItem.transform.forward * firePower, ForceMode.Impulse);
+                StartCoroutine(ProjectileCooldown(fireRate));
+            }
+        }
+
+    }
+
+    void LateUpdate()
+    {
+        if (itemHeld && currentItem.CompareTag("Weapon"))
+        {
+            currentItem.transform.LookAt(targetPoint);
+        }
     }
 
     bool isGrounded()
@@ -102,5 +130,12 @@ public class PlayerScript : MonoBehaviour
         //creates a ray at the players position - .9 Y, aimed downward, traveling for .2 units, and only interacting with the groundMask
         //returns true or false
         return Physics.Raycast(transform.position - new Vector3(0, .9f, 0), Vector3.down, out RaycastHit hit, .4f, groundMask);
+    }
+
+    IEnumerator ProjectileCooldown(float cooldownTime)
+    {
+        canFire = false;
+        yield return new WaitForSeconds(cooldownTime);
+        canFire = true;
     }
 }

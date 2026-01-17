@@ -17,7 +17,7 @@ public class CameraScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //set the lockstate of our cursor to locked, making it stick to the center of the screen and turn invisible
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,9 +28,9 @@ public class CameraScript : MonoBehaviour
     void MouseLook()
     {
         //set mouseX variable to the x input from mouse movement multiplied by time and sensitivity
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensitivity;
+        float mouseX = Input.GetAxis("Mouse X")  * mouseSensitivity;
         // set mouseY variable to the y input from mouse movement multiplied by time and sensitivity
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y")  * mouseSensitivity;
 
         xRot -= mouseY; //subtract the mouseY input from the rotation of our camera around the x axis
         xRot = Mathf.Clamp(xRot, minY, maxY); //hold the xRot value between the values of minY and maxY
