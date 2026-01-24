@@ -7,8 +7,10 @@ public class healthBar : MonoBehaviour
 
 {
     public Slider healthSlider;
-    public float maxHealth = 100f;
+    public float maxHealth = 100;
     public float health;
+    public Slider easeHealthSlider;
+    private float lerpspeed = 0.05f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +31,13 @@ public class healthBar : MonoBehaviour
             takeDamage(10);
         }
 
+        if (healthSlider.value != easeHealthSlider.value)
+        {
+            healthSlider.value = Mathf.Lerp(easeHealthSlider.value, health, lerpspeed); ;
+        }
     }
 
-    void takeDamage(float damage)
+    void takeDamage(int damage)
     {
         health -= damage;
     }
