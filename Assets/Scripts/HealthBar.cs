@@ -23,11 +23,6 @@ public class healthBar : MonoBehaviour
         {
             healthSlider.value = health;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            takeDamage(10);
-        }
     }
 
     void takeDamage(int damage)

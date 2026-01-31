@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     public float jumpForce; //holds the multiplier used for our jump
     public bool crouch; //bool for if player is crouching
     public float crouchHeight; //holds the crouch height
+    public GameObject secondCollider;
 
     public LayerMask groundMask; //variable to hold the layers that we want our ground check to interact with
 
@@ -29,12 +30,14 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        secondCollider.SetActive(false);
         rb = GetComponent<Rigidbody>(); //sets rb to the rigidbody of this object
         crouch = false;
         itemHeld = false;
         targetPoint = GameObject.FindGameObjectWithTag("ShotTarget").transform;
         spawnPoint = GameObject.Find("ShotSpawner").transform;
         crouchHeight = 1f;
+        canFire = true;
     }
 
     // Update is called once per frame
@@ -60,10 +63,12 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
+            secondCollider.SetActive(false);
             crouch = true;
         }
         else
         {
+            secondCollider.SetActive(true);
             crouch = false;
         }
 
@@ -84,6 +89,7 @@ public class PlayerScript : MonoBehaviour
             {
                 if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 6f, interactMask))
                 {
+                    SoundManager.PlaySound(SoundType.PICKUP);
                     itemHeld = true;
                     currentItem = reach.collider.gameObject;
                     currentItem.GetComponent<BaseItemScript>().isHeld = true;
@@ -96,6 +102,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (itemHeld)
             {
+                SoundManager.PlaySound(SoundType.DROP);
                 itemHeld = false;
                 currentItem.GetComponent<BaseItemScript>().isHeld = false;
                 currentItem.GetComponent<Rigidbody>().useGravity = true;
@@ -106,13 +113,21 @@ public class PlayerScript : MonoBehaviour
 
         if (itemHeld && currentItem.CompareTag("Weapon"))
         {
-           canFire = true;
-           if(Input.GetKeyDown(KeyCode.Mouse0) && canFire)
-            {
-                GameObject currentProjectile =  Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
-                currentProjectile.GetComponent<Rigidbody>().AddForce(currentItem.transform.forward * firePower, ForceMode.Impulse);
-                StartCoroutine(ProjectileCooldown(fireRate));
-            }
+           if(Input.GetKey(KeyCode.Mouse0))
+           {
+                if (canFire)
+                {
+                    SoundManager.PlaySound(SoundType.SHOOT);
+                    GameObject currentProjectile =  Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
+                    currentProjectile.GetComponent<Rigidbody>().AddForce(currentItem.transform.forward * firePower, ForceMode.Impulse);
+                    StartCoroutine(ProjectileCooldown(fireRate));
+                }
+                else
+                {
+                    return;
+                }
+                
+           }
         }
 
     }

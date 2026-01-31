@@ -9,6 +9,7 @@ public class CameraScript : MonoBehaviour
     public float xRot = 0f; //hold the rotation value of our axis, and set it to 0 by default
     public float minY = -75f; //hold the lower bound of our camera rotation up/down
     public float maxY = 75f; //hold the upper bound of our camera rotation up/down
+
     // Start is called before the first frame update
     void Start()
     {
