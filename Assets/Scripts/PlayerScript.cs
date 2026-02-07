@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
     public float fireRate;
     private bool canFire;
     public float firePower;
+    public GameObject aimPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,11 +87,15 @@ public class PlayerScript : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        aimPoint.SetActive(!itemHeld);
+        if (!itemHeld)
         {
-            if (!itemHeld)
+            aimPoint.SetActive(false);
+            if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4f, interactMask))
             {
-                if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 6f, interactMask))
+                aimPoint.SetActive(true);
+                aimPoint.transform.position = reach.point;
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     SoundManager.PlaySound(SoundType.PICKUP);
                     itemHeld = true;

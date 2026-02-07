@@ -7,6 +7,8 @@ public class BaseItemScript : MonoBehaviour
     public bool isHeld;
     public GameObject cam;
     public Transform itemPosition;
+    public Color originalColor;
+    public Color highlightColor;
 
 
     // Start is called before the first frame update
@@ -29,4 +31,15 @@ public class BaseItemScript : MonoBehaviour
             gameObject.transform.SetParent(null);
         }
     }
+/*
+    private void OnMouseEnter()
+    {
+        GetComponent<MeshRenderer>().material.color = highlightColor;
+    }
+
+    private void OnMouseExit()
+    {
+        GetComponent<MeshRenderer>().material.color = originalColor;
+    }
+*/
 }
