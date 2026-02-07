@@ -38,6 +38,8 @@ public class PlayerScript : MonoBehaviour
         spawnPoint = GameObject.Find("ShotSpawner").transform;
         crouchHeight = 1f;
         canFire = true;
+        fireRate = 0.5f;
+        firePower = 50f;
     }
 
     // Update is called once per frame
