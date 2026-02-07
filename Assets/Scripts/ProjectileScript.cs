@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     public float timer;
+    public float dmg;
 
     void Update()
     {
@@ -16,8 +17,14 @@ public class ProjectileScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 3)
+        if(collision.gameObject.layer == 3 || collision.gameObject.tag == "Enemy")
         {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyScript>().takeDamage(dmg);
             Destroy(gameObject);
         }
     }

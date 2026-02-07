@@ -126,9 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 8
+  dmg: 20
 --- !u!65 &8364235423366813607
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -7,26 +7,20 @@ public class HealthBar : MonoBehaviour
 
 {
     public Slider healthSlider;
-    public float maxHealth = 100;
-    public float health;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (healthSlider.value != health)
+        if (healthSlider.value != player.GetComponent<PlayerScript>().playerHP)
         {
-            healthSlider.value = health;
+            healthSlider.value = player.GetComponent<PlayerScript>().playerHP;
         }
-    }
-
-    void takeDamage(int damage)
-    {
-        health -= damage;
     }
 }

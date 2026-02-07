@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
 
     public Rigidbody rb; //holds a reference to the RigidBody component of the player
 
+    public float playerHP;
     public bool itemHeld; //let the script know if an item is being held by the player or not
     public GameObject currentItem; //hold the GameObject that the player is actively holding
     public Transform cameraPosition; //hold the Transform of the main camera
@@ -38,8 +39,8 @@ public class PlayerScript : MonoBehaviour
         spawnPoint = GameObject.Find("ShotSpawner").transform;
         crouchHeight = 1f;
         canFire = true;
-        fireRate = 0.5f;
-        firePower = 50f;
+        fireRate = 0.2f;
+        firePower = 60f;
     }
 
     // Update is called once per frame
@@ -155,4 +156,14 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(cooldownTime);
         canFire = true;
     }
+
+    public void takeDamage(float dmg)
+    {
+        playerHP -= dmg;
+        if (playerHP <= 0f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
