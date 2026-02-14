@@ -186,10 +186,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 0}
-  baseSpeed: 6
-  sprintSpeed: 12
-  crouchSpeed: 3
-  jumpForce: 6
+  baseSpeed: 8
+  sprintSpeed: 16
+  crouchSpeed: 4
+  jumpForce: 8
   crouch: 0
   crouchHeight: 0
   secondCollider: {fileID: 4279499923691874406}
@@ -198,6 +198,7 @@ MonoBehaviour:
     m_Bits: 8
   rb: {fileID: 0}
   playerHP: 100
+  playerStamina: 0
   itemHeld: 0
   currentItem: {fileID: 1764564499860003084}
   cameraPosition: {fileID: 7078096813617337812}

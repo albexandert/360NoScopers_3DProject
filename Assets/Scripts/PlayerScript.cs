@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody rb; //holds a reference to the RigidBody component of the player
 
     public float playerHP;
+    public float playerStamina;
     public bool itemHeld; //let the script know if an item is being held by the player or not
     public GameObject currentItem; //hold the GameObject that the player is actively holding
     public Transform cameraPosition; //hold the Transform of the main camera
@@ -55,11 +56,27 @@ public class PlayerScript : MonoBehaviour
 
         moveDirection = new Vector3(x, 0, z); //set moveDirection to the x and z values of our input
         //move the player at the speed of our variable, smoothed out by time, in the direction of our inputs
-        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+        if (playerStamina <= 100 && playerStamina > 0)
         {
-            transform.Translate(sprintSpeed * Time.deltaTime * moveDirection);
+            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+            {
+                playerStamina -= 0.1f;
+                transform.Translate(sprintSpeed * Time.deltaTime * moveDirection);
+            }
         }
-        else if (Input.GetKey(KeyCode.LeftControl))
+        if (playerStamina < 100 && (x == 0 && z == 0))
+        {
+            playerStamina += 0.05f;
+        }
+        else if (playerStamina > 100)
+        {
+            playerStamina = 100;
+        }
+        else if (playerStamina < 0)
+        {
+            playerStamina = 0;
+        }
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             transform.Translate(crouchSpeed * Time.deltaTime * moveDirection);
         }
@@ -67,7 +84,6 @@ public class PlayerScript : MonoBehaviour
         {
             transform.Translate(baseSpeed * Time.deltaTime * moveDirection);
         }
-
         if (Input.GetKey(KeyCode.LeftControl))
         {
             secondCollider.SetActive(false);

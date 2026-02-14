@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/360NoScopers_3DProject.unity
+    guid: ffdffba2312052d459c90bdf26196e1d
   m_configObjects: {}
