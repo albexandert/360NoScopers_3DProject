@@ -13,6 +13,8 @@ public class PlayerScript : MonoBehaviour
     public float crouchHeight; //holds the crouch height
     public GameObject secondCollider;
 
+    public bool dead = false;
+
     public LayerMask groundMask; //variable to hold the layers that we want our ground check to interact with
 
     public Rigidbody rb; //holds a reference to the RigidBody component of the player
@@ -165,9 +167,9 @@ public class PlayerScript : MonoBehaviour
     public void takeDamage(float dmg)
     {
         playerHP -= dmg;
-        if (playerHP <= 0f)
+        if (playerHP <= 0)
         {
-            Destroy(gameObject);
+            dead = true;
         }
     }
 
