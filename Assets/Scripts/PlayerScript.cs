@@ -32,16 +32,19 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        secondCollider = GameObject.Find("PlayerPart");
         secondCollider.SetActive(false);
         rb = GetComponent<Rigidbody>(); //sets rb to the rigidbody of this object
         crouch = false;
         itemHeld = false;
         targetPoint = GameObject.FindGameObjectWithTag("ShotTarget").transform;
         spawnPoint = GameObject.Find("ShotSpawner").transform;
+        cameraPosition = GameObject.Find("Main Camera").transform;
         crouchHeight = 1f;
         canFire = true;
         fireRate = 0.2f;
         firePower = 60f;
+        aimPoint = GameObject.Find("AimPointer");
     }
 
     // Update is called once per frame

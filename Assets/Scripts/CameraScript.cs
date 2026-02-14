@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         //search through the hierarchy for an object tagged as "Player" and sets the transform to our player variable
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame

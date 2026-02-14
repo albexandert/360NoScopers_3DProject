@@ -9,6 +9,7 @@ public class BaseItemScript : MonoBehaviour
     public Transform itemPosition;
     public Color originalColor;
     public Color highlightColor;
+    public Collider itemCollider;
 
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class BaseItemScript : MonoBehaviour
     {
         itemPosition = GameObject.Find("ItemLocation").transform;
         cam = GameObject.Find("Main Camera");
+        itemCollider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -23,11 +25,13 @@ public class BaseItemScript : MonoBehaviour
     {
         if (isHeld)
         {
+            itemCollider.enabled = false;
             transform.parent = cam.transform;
             transform.position = itemPosition.position;
         }
         else
         {
+            itemCollider.enabled = true;
             gameObject.transform.SetParent(null);
         }
     }
