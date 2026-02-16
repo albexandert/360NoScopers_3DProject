@@ -193,6 +193,7 @@ MonoBehaviour:
   crouch: 0
   crouchHeight: 0
   secondCollider: {fileID: 4279499923691874406}
+  dead: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -423,11 +424,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073124636a5550248aace7967cc57d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  mainCamera: {fileID: 1081708520814494369}
+  player: {fileID: 3353087829715128031}
   mouseSensitivity: 1.5
   xRot: 0
   minY: -60
   maxY: 60
+  playerScript: {fileID: 2705332566000678109}
+  sensitivitySlider: {fileID: 0}
+  FOVSlider: {fileID: 0}
 --- !u!1 &8183556708316604981
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,28 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
 {
+    public Camera mainCamera;
+
     public Transform player; //hold the position, rotation, and scale of the player object
     public float mouseSensitivity; //hold the sensitivity multiplier of our mouse movement
     public float xRot = 0f; //hold the rotation value of our axis, and set it to 0 by default
     public float minY = -75f; //hold the lower bound of our camera rotation up/down
     public float maxY = 75f; //hold the upper bound of our camera rotation up/down
 
+    public PlayerScript playerScript;
+
+    public Slider sensitivitySlider;
+    public Slider FOVSlider;
     // Start is called before the first frame update
     void Start()
     {
+        if (mainCamera != null && FOVSlider != null)
+        {
+            FOVSlider.value = mainCamera.fieldOfView;
+            FOVSlider.onValueChanged.AddListener(ChangeFOV);
+        }
+        mouseSensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
         //search through the hierarchy for an object tagged as "Player" and sets the transform to our player variable
-        player = GameObject.Find("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        sensitivitySlider.value = mouseSensitivity / 1;
+
+        playerScript = player.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        //set the lockstate of our cursor to locked, making it stick to the center of the screen and turn invisible
-        Cursor.lockState = CursorLockMode.Locked;
-        MouseLook(); //call the mouselook method every frame
+        if (playerScript.dead == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked; //set the lockstate of our cursor to locked, making it stick to the center of the screen and turn invisible
+            MouseLook();  //call the mouselook method every frame
+        }
     }
 
     //MouseLook will take mouse input and rotate the player/camera accordingly 
@@ -39,5 +61,17 @@ public class CameraScript : MonoBehaviour
         //rotate the camera locally around the x axis by the value of xRot every frame
         transform.localRotation = Quaternion.Euler(xRot, 0, 0);
         player.Rotate(Vector3.up * mouseX); //rotate the player object around the y axis by the value of mouseX every frame
+    }
+
+    public void AdjustSpeed(float newSpeed)
+    {
+        mouseSensitivity = newSpeed * 1;
+    }
+    public void ChangeFOV(float newFOV)
+    {
+        if (mainCamera != null)
+        {
+            mainCamera.fieldOfView = newFOV;
+        }
     }
 }

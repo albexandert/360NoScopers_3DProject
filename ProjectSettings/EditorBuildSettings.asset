@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title Screen Test.unity
+    guid: b8a84660a147e904bacbb23da3b152a7
+  - enabled: 1
     path: Assets/Scenes/360NoScopers_3DProject.unity
     guid: ffdffba2312052d459c90bdf26196e1d
   m_configObjects: {}
