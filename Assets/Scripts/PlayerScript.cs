@@ -58,15 +58,19 @@ public class PlayerScript : MonoBehaviour
         //move the player at the speed of our variable, smoothed out by time, in the direction of our inputs
         if (playerStamina <= 100 && playerStamina > 0)
         {
-            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (x != 0 || z != 0))
             {
-                playerStamina -= 0.1f;
+                playerStamina -= 0.085f;
                 transform.Translate(sprintSpeed * Time.deltaTime * moveDirection);
             }
         }
         if (playerStamina < 100 && (x == 0 && z == 0))
         {
-            playerStamina += 0.05f;
+            playerStamina += 0.03f;
+        }
+        else if (playerStamina < 100 && (x != 0 || z != 0))
+        {
+            playerStamina += 0.01f;
         }
         else if (playerStamina > 100)
         {

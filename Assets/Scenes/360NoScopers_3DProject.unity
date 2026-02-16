@@ -8095,6 +8095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1377096979}
   - component: {fileID: 1377096980}
+  - component: {fileID: 1377096981}
   m_Layer: 5
   m_Name: StaminaBarSlider
   m_TagString: Untagged
@@ -8174,6 +8175,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1377096981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377096978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d566d2614f10c74c9932ebb75e88a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaSlider: {fileID: 1377096980}
+  player: {fileID: 0}
 --- !u!1 &1408004589
 GameObject:
   m_ObjectHideFlags: 0
@@ -11836,10 +11851,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2705332566000678109, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: playerStamina
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 3353087829715128031, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -198,7 +198,7 @@ MonoBehaviour:
     m_Bits: 8
   rb: {fileID: 0}
   playerHP: 100
-  playerStamina: 0
+  playerStamina: 100
   itemHeld: 0
   currentItem: {fileID: 1764564499860003084}
   cameraPosition: {fileID: 7078096813617337812}
@@ -208,8 +208,8 @@ MonoBehaviour:
   targetPoint: {fileID: 7546841928973074600}
   projectile: {fileID: 8162435932959227568, guid: 7969ba4c55335374da4f6ed5e00bae5c, type: 3}
   spawnPoint: {fileID: 2703455021351805219}
-  fireRate: 1.5
-  firePower: 15.87
+  fireRate: 0
+  firePower: 0
   aimPoint: {fileID: 0}
 --- !u!1 &5375123053755897430
 GameObject:
