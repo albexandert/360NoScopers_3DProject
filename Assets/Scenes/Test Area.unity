@@ -1489,6 +1489,7 @@ MonoBehaviour:
   crouch: 0
   crouchHeight: 0
   secondCollider: {fileID: 1512193587}
+  dead: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -2345,6 +2346,7 @@ MonoBehaviour:
   xRot: 0
   minY: -60
   maxY: 60
+  playerScript: {fileID: 668413036}
   sensitivitySlider: {fileID: 1036363349}
   FOVSlider: {fileID: 1136200773}
 --- !u!114 &963194230
@@ -2359,6 +2361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae0a62f698531b488021951b6fc8f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScript: {fileID: 668413036}
+  player: {fileID: 668413032}
   setting: {fileID: 5364974}
   issettingactive: 0
 --- !u!1 &1036363347
