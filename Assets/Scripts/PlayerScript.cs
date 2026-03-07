@@ -32,6 +32,8 @@ public class PlayerScript : MonoBehaviour
     private bool canFire;
     public float firePower;
     public GameObject aimPoint;
+
+    public static bool dialog;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (pausemenuscript.isSettingActive == true)
+        {
+            return;
+        }
+
         float x = Input.GetAxisRaw("Horizontal"); //set the x variable to the output of our horizontal axis
         float z = Input.GetAxisRaw("Vertical"); //set the z variable to the output of our vertical axis
 
@@ -162,7 +169,6 @@ public class PlayerScript : MonoBehaviour
                 
            }
         }
-
     }
 
     void LateUpdate()
@@ -170,6 +176,13 @@ public class PlayerScript : MonoBehaviour
         if (itemHeld && currentItem.CompareTag("Weapon"))
         {
             currentItem.transform.LookAt(targetPoint);
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (!dialog)
+        {
+            return;
         }
     }
 

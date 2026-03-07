@@ -8,6 +8,8 @@ TagManager:
   - ShotTarget
   - Weapon
   - Enemy
+  - Interactable
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Interactable
   - Navmesh
   - Player
-  - 
+  - NPC
   - 
   - 
   - 
