@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
 
 public class deathscreenscript : MonoBehaviour
 {
@@ -48,6 +47,6 @@ public class deathscreenscript : MonoBehaviour
     }
     public void Menu()
     {
-        EditorSceneManager.LoadScene(TitleScreen);
+        SceneManager.LoadScene(TitleScreen);
     }
 }

@@ -9,10 +9,11 @@ public class pausemenuscript : MonoBehaviour
     public GameObject player;
 
     public GameObject setting;
-    public bool issettingactive;
+    public bool isSettingActive;
 
     void Start()
     {
+        Time.timeScale = 1f;
         playerScript = player.GetComponent<PlayerScript>();
     }
 
@@ -22,7 +23,7 @@ public class pausemenuscript : MonoBehaviour
         {
             if (playerScript.dead == false)
             {
-                if (issettingactive == false)
+                if (isSettingActive == false)
                 {
                     Pause();
                 }
@@ -37,7 +38,7 @@ public class pausemenuscript : MonoBehaviour
     public void Pause()
     {
         setting.SetActive(true);
-        issettingactive = true;
+        isSettingActive = true;
         this.GetComponent<CameraScript>().enabled = false;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
@@ -46,7 +47,7 @@ public class pausemenuscript : MonoBehaviour
     public void Resume()
     {
         setting.SetActive(false);
-        issettingactive = false;
+        isSettingActive = false;
         this.GetComponent<CameraScript>().enabled = true;
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;

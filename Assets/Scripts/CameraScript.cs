@@ -50,7 +50,6 @@ public class CameraScript : MonoBehaviour
     //MouseLook will take mouse input and rotate the player/camera accordingly 
     void MouseLook()
     {
-        PlayerPrefs.SetFloat("currentSensitivity", mouseSensitivity);
         //set mouseX variable to the x input from mouse movement multiplied by time and sensitivity
         float mouseX = Input.GetAxis("Mouse X")  * mouseSensitivity;
         // set mouseY variable to the y input from mouse movement multiplied by time and sensitivity
@@ -63,9 +62,10 @@ public class CameraScript : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRot, 0, 0);
         player.Rotate(Vector3.up * mouseX); //rotate the player object around the y axis by the value of mouseX every frame
     }
+
     public void AdjustSpeed(float newSpeed)
     {
-        mouseSensitivity = newSpeed *1;
+        mouseSensitivity = newSpeed * 1;
     }
     public void ChangeFOV(float newFOV)
     {

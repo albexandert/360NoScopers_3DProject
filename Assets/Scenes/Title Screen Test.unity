@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0343927b0c88dca45825d4d1b94b2efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameLevel: Test Area
+  newGameLevel: 360NoScopers_3DProject
 --- !u!4 &396843334
 Transform:
   m_ObjectHideFlags: 0

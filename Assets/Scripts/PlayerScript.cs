@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody rb; //holds a reference to the RigidBody component of the player
 
     public float playerHP;
+    public float playerStamina;
     public bool itemHeld; //let the script know if an item is being held by the player or not
     public GameObject currentItem; //hold the GameObject that the player is actively holding
     public Transform cameraPosition; //hold the Transform of the main camera
@@ -34,16 +35,19 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        secondCollider = GameObject.Find("PlayerPart");
         secondCollider.SetActive(false);
         rb = GetComponent<Rigidbody>(); //sets rb to the rigidbody of this object
         crouch = false;
         itemHeld = false;
         targetPoint = GameObject.FindGameObjectWithTag("ShotTarget").transform;
         spawnPoint = GameObject.Find("ShotSpawner").transform;
+        cameraPosition = GameObject.Find("Main Camera").transform;
         crouchHeight = 1f;
         canFire = true;
         fireRate = 0.2f;
         firePower = 60f;
+        aimPoint = GameObject.Find("AimPointer");
     }
 
     // Update is called once per frame
@@ -54,11 +58,31 @@ public class PlayerScript : MonoBehaviour
 
         moveDirection = new Vector3(x, 0, z); //set moveDirection to the x and z values of our input
         //move the player at the speed of our variable, smoothed out by time, in the direction of our inputs
-        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+        if (playerStamina <= 100 && playerStamina > 0)
         {
-            transform.Translate(sprintSpeed * Time.deltaTime * moveDirection);
+            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (x != 0 || z != 0))
+            {
+                playerStamina -= 0.085f;
+                transform.Translate(sprintSpeed * Time.deltaTime * moveDirection);
+            }
         }
-        else if (Input.GetKey(KeyCode.LeftControl))
+        if (playerStamina < 100 && (x == 0 && z == 0))
+        {
+            playerStamina += 0.03f;
+        }
+        else if (playerStamina < 100 && (x != 0 || z != 0))
+        {
+            playerStamina += 0.01f;
+        }
+        else if (playerStamina > 100)
+        {
+            playerStamina = 100;
+        }
+        else if (playerStamina < 0)
+        {
+            playerStamina = 0;
+        }
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             transform.Translate(crouchSpeed * Time.deltaTime * moveDirection);
         }
@@ -66,7 +90,6 @@ public class PlayerScript : MonoBehaviour
         {
             transform.Translate(baseSpeed * Time.deltaTime * moveDirection);
         }
-
         if (Input.GetKey(KeyCode.LeftControl))
         {
             secondCollider.SetActive(false);
