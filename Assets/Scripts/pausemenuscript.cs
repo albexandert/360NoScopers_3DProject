@@ -9,7 +9,7 @@ public class pausemenuscript : MonoBehaviour
     public GameObject player;
 
     public GameObject setting;
-    public bool isSettingActive;
+    public static bool isSettingActive = false;
 
     void Start()
     {

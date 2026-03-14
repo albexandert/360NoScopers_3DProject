@@ -22,5 +22,9 @@ public class HealthBar : MonoBehaviour
         {
             healthSlider.value = player.GetComponent<PlayerScript>().playerHP;
         }
+        if (healthSlider.value == 0)
+        {
+
+        }
     }
 }
