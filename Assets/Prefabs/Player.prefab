@@ -214,7 +214,7 @@ MonoBehaviour:
   baseSpeed: 8
   sprintSpeed: 12
   crouchSpeed: 4
-  jumpForce: 8
+  jumpForce: 10
   crouch: 0
   crouchHeight: 0
   secondCollider: {fileID: 4279499923691874406}
@@ -225,6 +225,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   playerHP: 100
   playerStamina: 100
+  staminaIncrease: 0.5
+  staminaIncreaseWalking: 0.1
+  staminaDecrease: 0.6
   itemHeld: 0
   currentItem: {fileID: 1764564499860003084}
   cameraPosition: {fileID: 7078096813617337812}
