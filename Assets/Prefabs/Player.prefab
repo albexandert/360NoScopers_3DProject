@@ -500,7 +500,6 @@ MonoBehaviour:
   playerScript: {fileID: 2705332566000678109}
   player: {fileID: 5073240049659133289}
   setting: {fileID: 0}
-  isSettingActive: 0
 --- !u!1 &8183556708316604981
 GameObject:
   m_ObjectHideFlags: 0

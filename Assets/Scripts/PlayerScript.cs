@@ -70,15 +70,15 @@ public class PlayerScript : MonoBehaviour
                                               //move the player at the speed of our variable, smoothed out by time, in the direction of our inputs
         if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (moveDirection.x != 0 || moveDirection.z != 0) && playerStamina != 0)
         {
-            playerStamina -= staminaDecrease;
+            playerStamina -= staminaDecrease * Time.deltaTime;
         }
         if (playerStamina < 100 && (x == 0 && z == 0))
         {
-            playerStamina += staminaIncrease;
+            playerStamina += staminaIncrease * Time.deltaTime;
         }
         else if (playerStamina < 100 && (x != 0 || z != 0))
         {
-            playerStamina += staminaIncreaseWalking;
+            playerStamina += staminaIncreaseWalking * Time.deltaTime;
         }
         else if (playerStamina > 100)
         {
@@ -190,6 +190,7 @@ public class PlayerScript : MonoBehaviour
             currentItem.transform.LookAt(targetPoint);
         }
     }
+    /*
     private void FixedUpdate()
     {
         if (!dialog)
@@ -197,6 +198,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
     }
+    */
 
     bool isGrounded()
     {
