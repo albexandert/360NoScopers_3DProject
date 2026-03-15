@@ -10904,7 +10904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1933805773
 Transform:
   m_ObjectHideFlags: 0
@@ -11853,6 +11853,18 @@ PrefabInstance:
       propertyPath: setting
       value: 
       objectReference: {fileID: 525424650}
+    - target: {fileID: 2705332566000678109, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
+      propertyPath: staminaDecrease
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705332566000678109, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
+      propertyPath: staminaIncrease
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705332566000678109, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
+      propertyPath: staminaIncreaseWalking
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3353087829715128031, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11906,7 +11918,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5375123053755897430, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
