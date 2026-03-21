@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     public float staminaIncrease;
     public float staminaIncreaseWalking;
     public float staminaDecrease;
+    public float jumpStaminaDecrease;
     public bool itemHeld; //let the script know if an item is being held by the player or not
     public GameObject currentItem; //hold the GameObject that the player is actively holding
     public Transform cameraPosition; //hold the Transform of the main camera
@@ -68,7 +69,7 @@ public class PlayerScript : MonoBehaviour
 
         moveDirection = new Vector3(x, 0, z); //set moveDirection to the x and z values of our input
                                               //move the player at the speed of our variable, smoothed out by time, in the direction of our inputs
-        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (moveDirection.x != 0 || moveDirection.z != 0) && playerStamina != 0)
+        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (moveDirection.x != 0 || moveDirection.z != 0) && playerStamina >= 0)
         {
             playerStamina -= staminaDecrease * Time.deltaTime;
         }
@@ -108,24 +109,39 @@ public class PlayerScript : MonoBehaviour
         {
             //adds an instant force to the player in the upward direction multiplied by the value of jumpforce
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (playerStamina <= 100 && playerStamina >= 0)
+            {
+                playerStamina -= jumpStaminaDecrease;
+            }
         }
 
-        aimPoint.SetActive(!itemHeld);
+        //aimPoint.SetActive(!itemHeld);
         if (!itemHeld)
         {
-            aimPoint.SetActive(false);
+            //aimPoint.SetActive(false);
             if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4f, interactMask))
             {
-                aimPoint.SetActive(true);
-                aimPoint.transform.position = reach.point;
-                if (Input.GetKeyDown(KeyCode.E))
+                //aimPoint.SetActive(true);
+                //aimPoint.transform.position = reach.point;
+                if (reach.collider.gameObject.CompareTag("Item") || reach.collider.gameObject.CompareTag("Weapon"))
                 {
-                    SoundManager.PlaySound(SoundType.PICKUP);
-                    itemHeld = true;
-                    currentItem = reach.collider.gameObject;
-                    currentItem.GetComponent<BaseItemScript>().isHeld = true;
-                    currentItem.GetComponent<Rigidbody>().useGravity = false;
-                    currentItem.GetComponent<Rigidbody>().isKinematic = true;
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        SoundManager.PlaySound(SoundType.PICKUP);
+                        itemHeld = true;
+                        currentItem = reach.collider.gameObject;
+                        currentItem.GetComponent<BaseItemScript>().isHeld = true;
+                        currentItem.GetComponent<Rigidbody>().useGravity = false;
+                        currentItem.GetComponent<Rigidbody>().isKinematic = true;
+                    }
+                }
+                else if (reach.collider.gameObject.CompareTag("Button"))
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        SoundManager.PlaySound(SoundType.BUTTONPRESS);
+                        reach.collider.gameObject.GetComponent<SwitchesScript>().ButtonActivate();
+                    }
                 }
             }
         }

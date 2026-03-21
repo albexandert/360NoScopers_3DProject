@@ -8,7 +8,8 @@ public enum SoundType
     PICKUP,
     DROP,
     MONSTERGROWL1,
-    MONSTERGROWL2
+    MONSTERGROWL2,
+    BUTTONPRESS
 }
 
 [RequireComponent(typeof(AudioSource))]

@@ -41,7 +41,7 @@ public class pausemenuscript : MonoBehaviour
         isSettingActive = true;
         this.GetComponent<CameraScript>().enabled = false;
         Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void Resume()
