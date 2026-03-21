@@ -1,42 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class NPCSystemScript : MonoBehaviour
 {
-    public bool playerDetection = false;
+    public TextMeshProUGUI text;
+    public string[] lines;
 
-    public GameObject dialogTemplate;
-    public GameObject canvas;
-    // Update is called once per frame
+    public float textSpeed;
+
+    public int index;
+
+    void Start()
+    {
+        text.text = string.Empty;
+        StartDialogue();
+    }
     void Update()
     {
-        if (playerDetection && Input.GetKeyDown(KeyCode.E) && !PlayerScript.dialog)
+        if (Input.GetMouseButtonDown(0))
         {
-            canvas.SetActive(true);
-            PlayerScript.dialog = true;
-            newDialog("Hi!");
-            newDialog("This is a test!");
-            canvas.transform.GetChild(1).gameObject.SetActive(true);
+            if (text.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                text.text = lines[index];
+            }
         }
     }
-    private void OnTriggerEnter(Collider other)
+    void StartDialogue()
     {
-        if (other.name == "Player")
+        index = 0;
+        StartCoroutine(TypeLine());
+    }
+    IEnumerator TypeLine()
+    {
+        foreach (char c in lines[index].ToCharArray())
         {
-            playerDetection = true;
+            text.text += c;
+            yield return new WaitForSeconds(textSpeed);
         }
     }
-    private void OnTriggerExit(Collider other)
+    void NextLine()
     {
-        playerDetection = false;
-    }
-    void newDialog(string text)
-    {
-        GameObject template_clone = Instantiate(dialogTemplate, dialogTemplate.transform);
-        template_clone.transform.parent = canvas.transform;
-        template_clone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = text;
+        if (index < lines.Length - 1)
+        {
+            index++;
+            text.text = string.Empty;
+            StartCoroutine(TypeLine());
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

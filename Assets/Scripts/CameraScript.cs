@@ -35,7 +35,7 @@ public class CameraScript : MonoBehaviour
     }
     private void Update()
     {
-        if (!PlayerScript.dialog)
+        /*if (!PlayerScript.dialog)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -48,7 +48,7 @@ public class CameraScript : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
+        }*/
     }
 
     // Update is called once per frame
