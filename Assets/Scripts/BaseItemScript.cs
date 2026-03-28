@@ -36,17 +36,4 @@ public class BaseItemScript : MonoBehaviour
             gameObject.transform.SetParent(null);
         }
     }
-
-    private void OnMouseEnter()
-    {
-        if (Vector3.Distance(gameObject.transform.position, GameObject.Find("Player").transform.position) < 5)
-        {
-            itemOutline.enabled = true;
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        itemOutline.enabled = false;
-    }
 }

@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class HighlightScript : MonoBehaviour
 {
-    private Color startColor;
+    private Outline itemOutline;
+    void Start()
+    {
+        itemOutline = GetComponent<Outline>();
+        itemOutline.enabled = false;
+    }
 
     private void OnMouseEnter()
     {
-        startColor = GetComponent<Renderer>().material.color;
-        GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+        if (Vector3.Distance(gameObject.transform.position, GameObject.Find("Player").transform.position) < 4f)
+        {
+            itemOutline.enabled = true;
+        }
     }
 
     private void OnMouseExit()
     {
-        GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+        itemOutline.enabled = false;
     }
 }

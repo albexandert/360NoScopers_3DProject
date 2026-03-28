@@ -115,14 +115,10 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        //aimPoint.SetActive(!itemHeld);
         if (!itemHeld)
-        {
-            //aimPoint.SetActive(false);
+        { 
             if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4f, interactMask))
             {
-                //aimPoint.SetActive(true);
-                //aimPoint.transform.position = reach.point;
                 if (reach.collider.gameObject.CompareTag("Item") || reach.collider.gameObject.CompareTag("Weapon"))
                 {
                     if (Input.GetKeyDown(KeyCode.E))
