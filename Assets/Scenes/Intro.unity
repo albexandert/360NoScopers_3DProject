@@ -2477,14 +2477,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1508297000645130327, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: maxY
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 1508297000645130327, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: minY
-      value: -70
-      objectReference: {fileID: 0}
-    - target: {fileID: 1508297000645130327, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
       propertyPath: FOVSlider
       value: 
       objectReference: {fileID: 800933518}
@@ -2539,26 +2531,6 @@ PrefabInstance:
     - target: {fileID: 5073240049659133289, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078096813617337812, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8660254
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078096813617337812, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078096813617337812, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078096813617337812, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078096813617337812, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
