@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4503172083297810848}
   - component: {fileID: 3188682720607646915}
   - component: {fileID: 5210530479857307427}
+  - component: {fileID: 5558542161095256274}
   m_Layer: 6
   m_Name: Paper
   m_TagString: Item
@@ -150,9 +151,8 @@ MonoBehaviour:
   isHeld: 0
   cam: {fileID: 0}
   itemPosition: {fileID: 0}
-  originalColor: {r: 0, g: 0, b: 0, a: 0}
-  highlightColor: {r: 0, g: 0, b: 0, a: 0}
   itemCollider: {fileID: 8628636801740738167}
+  itemOutline: {fileID: 0}
 --- !u!114 &5210530479857307427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +165,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad016009c104c7449e628e8a63f5527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5558542161095256274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576664075968059655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.93325603, g: 1, b: 0, a: 1}
+  outlineWidth: 9.39
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

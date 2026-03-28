@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 0}
-  baseSpeed: 8
-  sprintSpeed: 12
+  baseSpeed: 6
+  sprintSpeed: 9
   crouchSpeed: 4
   jumpForce: 10
   crouch: 0
@@ -225,9 +225,10 @@ MonoBehaviour:
   rb: {fileID: 0}
   playerHP: 100
   playerStamina: 100
-  staminaIncrease: 0.5
-  staminaIncreaseWalking: 0.1
-  staminaDecrease: 0.6
+  staminaIncrease: 35
+  staminaIncreaseWalking: 10
+  staminaDecrease: 50
+  jumpStaminaDecrease: 0
   itemHeld: 0
   currentItem: {fileID: 1764564499860003084}
   cameraPosition: {fileID: 7078096813617337812}
@@ -239,7 +240,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 2703455021351805219}
   fireRate: 0
   firePower: 0
-  aimPoint: {fileID: 0}
+  aimPoint: {fileID: 8183556708316604981}
 --- !u!136 &8458945421053945612
 CapsuleCollider:
   m_ObjectHideFlags: 0
