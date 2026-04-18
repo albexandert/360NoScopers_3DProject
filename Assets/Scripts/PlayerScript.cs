@@ -47,7 +47,6 @@ public class PlayerScript : MonoBehaviour
         crouch = false;
         itemHeld = false;
         targetPoint = GameObject.FindGameObjectWithTag("ShotTarget").transform;
-        spawnPoint = GameObject.Find("ShotSpawner").transform;
         cameraPosition = GameObject.Find("Main Camera").transform;
         crouchHeight = 1f;
         canFire = true;
