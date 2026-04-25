@@ -5,6 +5,7 @@ using TMPro;
 
 public class NPCSystemScript : MonoBehaviour
 {
+    public DialogueDetectionScript detectionScript;
     public TextMeshProUGUI text;
     public string[] lines;
 
@@ -14,12 +15,13 @@ public class NPCSystemScript : MonoBehaviour
 
     void Start()
     {
+        detectionScript = GetComponent<DialogueDetectionScript>();
         text.text = string.Empty;
         StartDialogue();
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && DialogueDetectionScript.dialogueInProgress == true)
         {
             if (text.text == lines[index])
             {
@@ -56,6 +58,7 @@ public class NPCSystemScript : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            DialogueDetectionScript.dialogueInProgress = false;
         }
     }
 }

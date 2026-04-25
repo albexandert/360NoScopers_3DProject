@@ -35,20 +35,7 @@ public class CameraScript : MonoBehaviour
     }
     private void Update()
     {
-        /*if (!PlayerScript.dialog)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            MouseLook();
-
-            mainCamera.transform.localRotation = Quaternion.Euler(xRot, 0, 0);
-            transform.rotation = Quaternion.Euler(0, minY, maxY);
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }*/
+ 
     }
 
     // Update is called once per frame
