@@ -13,7 +13,10 @@ public class pausemenuscript : MonoBehaviour
 
     void Start()
     {
+        setting = GameObject.Find("Settings Panel");
+        setting.SetActive(false);
         Time.timeScale = 1f;
+        player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerScript>();
     }
 
