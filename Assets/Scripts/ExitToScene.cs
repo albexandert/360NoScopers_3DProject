@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class ExitToScene : MonoBehaviour
 {
     public string nextScene;
-    /*
+    
     private void OnCollisionEnter(Collision collision)
     {
-        if ()
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene(nextScene);
+        }
     }
-    */
+    
 }

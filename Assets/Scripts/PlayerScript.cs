@@ -125,9 +125,7 @@ public class PlayerScript : MonoBehaviour
                         SoundManager.PlaySound(SoundType.PICKUP);
                         itemHeld = true;
                         currentItem = reach.collider.gameObject;
-                        currentItem.GetComponent<BaseItemScript>().isHeld = true;
-                        currentItem.GetComponent<Rigidbody>().useGravity = false;
-                        currentItem.GetComponent<Rigidbody>().isKinematic = true;
+                        currentItem.GetComponent<BaseItemScript>().OnPickUpStarted();
                     }
                 }
                 else if (reach.collider.gameObject.CompareTag("Button"))
@@ -146,9 +144,7 @@ public class PlayerScript : MonoBehaviour
             {
                 SoundManager.PlaySound(SoundType.DROP);
                 itemHeld = false;
-                currentItem.GetComponent<BaseItemScript>().isHeld = false;
-                currentItem.GetComponent<Rigidbody>().useGravity = true;
-                currentItem.GetComponent<Rigidbody>().isKinematic = false;
+                currentItem.GetComponent<BaseItemScript>().OnPickUpEnded();
                 currentItem = null;
             }
         }

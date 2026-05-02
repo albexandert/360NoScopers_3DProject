@@ -12,6 +12,7 @@ TagManager:
   - Item
   - Button
   - Exit
+  - OG
   layers:
   - Default
   - TransparentFX
