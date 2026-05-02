@@ -706,7 +706,7 @@ Transform:
   m_GameObject: {fileID: 500285853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -26.5, y: 3.7018, z: 191.54}
+  m_LocalPosition: {x: -26.5, y: 3.7018, z: 174.3}
   m_LocalScale: {x: 1.360578, y: 8.461556, z: 13.288558}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f403026803f8eae4aad0048067052228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Lobby
+  nextScene: 360NoScopers_3DProject
 --- !u!1 &633887367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,6 +1855,14 @@ PrefabInstance:
       propertyPath: sensitivitySlider
       value: 
       objectReference: {fileID: 636885335}
+    - target: {fileID: 2705332566000678109, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
+      propertyPath: baseSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705332566000678109, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
+      propertyPath: sprintSpeed
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3353087829715128031, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.92
