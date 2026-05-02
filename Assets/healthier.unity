@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 89022952}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2290787, y: 0.04504851, z: -4.990493}
+  m_LocalPosition: {x: 1.2290787, y: 1.6, z: -4.990493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -283,6 +283,7 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   maxHealth: 100
   health: 4
+  easeHealthSlider: {fileID: 0}
 --- !u!114 &165014969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,6 +579,7 @@ MonoBehaviour:
   healthSlider: {fileID: 603944698}
   maxHealth: 100
   health: 6.08
+  easeHealthSlider: {fileID: 0}
 --- !u!114 &603944698
 MonoBehaviour:
   m_ObjectHideFlags: 0
