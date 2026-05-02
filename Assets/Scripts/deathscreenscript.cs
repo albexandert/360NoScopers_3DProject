@@ -15,6 +15,9 @@ public class deathscreenscript : MonoBehaviour
 
     void Start()
     {
+        deathScreen = GameObject.Find("Death Screen");
+        deathScreen.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerScript>();
     }
 

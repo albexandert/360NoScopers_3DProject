@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour
 {
     public Camera mainCamera;
 
-    public Transform player; //hold the position, rotation, and scale of the player object
+    public GameObject player; //hold the position, rotation, and scale of the player object
     public float mouseSensitivity; //hold the sensitivity multiplier of our mouse movement
     public float xRot = 0f; //hold the rotation value of our axis, and set it to 0 by default
     public float minY = -75f; //hold the lower bound of our camera rotation up/down
@@ -28,7 +28,7 @@ public class CameraScript : MonoBehaviour
         }
         mouseSensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
         //search through the hierarchy for an object tagged as "Player" and sets the transform to our player variable
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player");
         sensitivitySlider.value = mouseSensitivity / 1;
 
         playerScript = player.GetComponent<PlayerScript>();
@@ -78,7 +78,7 @@ public class CameraScript : MonoBehaviour
 
         //rotate the camera locally around the x axis by the value of xRot every frame
         transform.localRotation = Quaternion.Euler(xRot, 0, 0);
-        player.Rotate(Vector3.up * mouseX); //rotate the player object around the y axis by the value of mouseX every frame
+        player.GetComponent<Transform>().Rotate(Vector3.up * mouseX); //rotate the player object around the y axis by the value of mouseX every frame
     }
 
     public void AdjustSpeed(float newSpeed)
