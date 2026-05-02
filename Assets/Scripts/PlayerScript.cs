@@ -21,6 +21,10 @@ public class PlayerScript : MonoBehaviour
 
     public float playerHP;
     public float playerStamina;
+    public float staminaIncrease;
+    public float staminaIncreaseWalking;
+    public float staminaDecrease;
+    public float jumpStaminaDecrease;
     public bool itemHeld; //let the script know if an item is being held by the player or not
     public GameObject currentItem; //hold the GameObject that the player is actively holding
     public Transform cameraPosition; //hold the Transform of the main camera
@@ -43,7 +47,6 @@ public class PlayerScript : MonoBehaviour
         crouch = false;
         itemHeld = false;
         targetPoint = GameObject.FindGameObjectWithTag("ShotTarget").transform;
-        spawnPoint = GameObject.Find("ShotSpawner").transform;
         cameraPosition = GameObject.Find("Main Camera").transform;
         crouchHeight = 1f;
         canFire = true;
@@ -64,22 +67,18 @@ public class PlayerScript : MonoBehaviour
         float z = Input.GetAxisRaw("Vertical"); //set the z variable to the output of our vertical axis
 
         moveDirection = new Vector3(x, 0, z); //set moveDirection to the x and z values of our input
-        //move the player at the speed of our variable, smoothed out by time, in the direction of our inputs
-        if (playerStamina <= 100 && playerStamina > 0)
+                                              //move the player at the speed of our variable, smoothed out by time, in the direction of our inputs
+        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (moveDirection.x != 0 || moveDirection.z != 0) && playerStamina >= 0)
         {
-            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (x != 0 || z != 0))
-            {
-                playerStamina -= 0.085f;
-                transform.Translate(sprintSpeed * Time.deltaTime * moveDirection);
-            }
+            playerStamina -= staminaDecrease * Time.deltaTime;
         }
         if (playerStamina < 100 && (x == 0 && z == 0))
         {
-            playerStamina += 0.03f;
+            playerStamina += staminaIncrease * Time.deltaTime;
         }
         else if (playerStamina < 100 && (x != 0 || z != 0))
         {
-            playerStamina += 0.01f;
+            playerStamina += staminaIncreaseWalking * Time.deltaTime;
         }
         else if (playerStamina > 100)
         {
@@ -88,14 +87,6 @@ public class PlayerScript : MonoBehaviour
         else if (playerStamina < 0)
         {
             playerStamina = 0;
-        }
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            transform.Translate(crouchSpeed * Time.deltaTime * moveDirection);
-        }
-        else
-        {
-            transform.Translate(baseSpeed * Time.deltaTime * moveDirection);
         }
         if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -117,24 +108,35 @@ public class PlayerScript : MonoBehaviour
         {
             //adds an instant force to the player in the upward direction multiplied by the value of jumpforce
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (playerStamina <= 100 && playerStamina >= 0)
+            {
+                playerStamina -= jumpStaminaDecrease;
+            }
         }
 
-        aimPoint.SetActive(!itemHeld);
         if (!itemHeld)
-        {
-            aimPoint.SetActive(false);
+        { 
             if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4f, interactMask))
             {
-                aimPoint.SetActive(true);
-                aimPoint.transform.position = reach.point;
-                if (Input.GetKeyDown(KeyCode.E))
+                if (reach.collider.gameObject.CompareTag("Item") || reach.collider.gameObject.CompareTag("Weapon"))
                 {
-                    SoundManager.PlaySound(SoundType.PICKUP);
-                    itemHeld = true;
-                    currentItem = reach.collider.gameObject;
-                    currentItem.GetComponent<BaseItemScript>().isHeld = true;
-                    currentItem.GetComponent<Rigidbody>().useGravity = false;
-                    currentItem.GetComponent<Rigidbody>().isKinematic = true;
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        SoundManager.PlaySound(SoundType.PICKUP);
+                        itemHeld = true;
+                        currentItem = reach.collider.gameObject;
+                        currentItem.GetComponent<BaseItemScript>().isHeld = true;
+                        currentItem.GetComponent<Rigidbody>().useGravity = false;
+                        currentItem.GetComponent<Rigidbody>().isKinematic = true;
+                    }
+                }
+                else if (reach.collider.gameObject.CompareTag("Button"))
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        SoundManager.PlaySound(SoundType.BUTTONPRESS);
+                        reach.collider.gameObject.GetComponent<SwitchesScript>().ButtonActivate();
+                    }
                 }
             }
         }
@@ -171,6 +173,27 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Vector3 cameraBasedMoveDirection = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0) * moveDirection;
+        if (playerStamina <= 100 && playerStamina > 0)
+        {
+            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && (moveDirection.x != 0 || moveDirection.z != 0))
+            {
+                playerStamina -= 0.085f;
+                rb.MovePosition(rb.position + sprintSpeed * Time.fixedDeltaTime * cameraBasedMoveDirection);
+            }
+        }
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            rb.MovePosition(rb.position + crouchSpeed * Time.fixedDeltaTime * cameraBasedMoveDirection);
+        }
+        else
+        {
+            rb.MovePosition(rb.position + baseSpeed * Time.fixedDeltaTime * cameraBasedMoveDirection);
+        }
+    }
+
     void LateUpdate()
     {
         if (itemHeld && currentItem.CompareTag("Weapon"))
@@ -178,6 +201,7 @@ public class PlayerScript : MonoBehaviour
             currentItem.transform.LookAt(targetPoint);
         }
     }
+    /*
     private void FixedUpdate()
     {
         if (!dialog)
@@ -185,6 +209,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
     }
+    */
 
     bool isGrounded()
     {

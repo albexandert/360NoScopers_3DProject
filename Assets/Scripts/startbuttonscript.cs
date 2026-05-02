@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class startbuttonscript : MonoBehaviour
 {
-    [SerializeField] private string newGameLevel = "360NoScopers_3DProject";
+    [SerializeField] private string newGameLevel = "Intro";
     public void NewGameButton()
     {
         SceneManager.LoadScene(newGameLevel);

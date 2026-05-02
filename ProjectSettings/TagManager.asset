@@ -8,8 +8,9 @@ TagManager:
   - ShotTarget
   - Weapon
   - Enemy
-  - Interactable
   - NPC
+  - Item
+  - Button
   layers:
   - Default
   - TransparentFX
