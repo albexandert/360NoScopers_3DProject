@@ -116,7 +116,7 @@ public class PlayerScript : MonoBehaviour
 
         if (!itemHeld)
         { 
-            if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4f, interactMask))
+            if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4.5f, interactMask))
             {
                 if (reach.collider.gameObject.CompareTag("Item") || reach.collider.gameObject.CompareTag("Weapon"))
                 {
