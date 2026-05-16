@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FirearmScript : MonoBehaviour
 {
     public GameObject projectile;
     public Transform spawnPoint;
     public float fireRate;
-    public float overheatRate;
-    private bool canFire;
+    public float cooldownRate;
+    public float overheatLockout;
+    public bool canFire;
+    public bool overheating;
     public float firePower;
-    private int shots = 0;
-    public int shotsTillOverheat;
-    private float Timer;
+    public int shotHeatValue;
+    public Slider overheatSlider;
     // Start is called before the first frame update
     void Start()
     {
+        overheatSlider = GameObject.Find("OverheatBarSlider").GetComponent<Slider>();
         spawnPoint = gameObject.GetComponentInChildren<Transform>();
         canFire = true;
     }
@@ -23,31 +26,37 @@ public class FirearmScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (overheatSlider.value > 0 && !overheating)
+        {
+            overheatSlider.value -= Time.deltaTime * cooldownRate;
+        }
     }
 
     public void OnFire()
     {
-        if (canFire)
+       
+        if (canFire && !overheating)
         {
             SoundManager.PlaySound(SoundType.SHOOT);
             GameObject currentProjectile = Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
             currentProjectile.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * firePower, ForceMode.Impulse);
+            overheatSlider.value += shotHeatValue;
             StartCoroutine(ProjectileCooldown(fireRate));
         }
         else
         {
             return;
         }
-        if(shots == shotsTillOverheat)
+        if(overheatSlider.value > 90)
         {
-            StartCoroutine(OverheatCooldown(overheatRate));
+            overheatSlider.value = 100;
+            StartCoroutine(OverheatCooldown(overheatLockout));
         }
+        
     }
     IEnumerator ProjectileCooldown(float cooldownTime)
     {
         canFire = false;
-        shots += 1;
         yield return new WaitForSeconds(cooldownTime);
         canFire = true;
     }
@@ -55,8 +64,17 @@ public class FirearmScript : MonoBehaviour
     IEnumerator OverheatCooldown(float cooldownTime)
     {
         canFire = false;
-        yield return new WaitForSeconds(cooldownTime);
-        shots = 0;
+        overheating = true;
+        float timePassed = 0f;
+        while (timePassed < cooldownTime)
+        {
+            float time = timePassed / cooldownTime;
+            overheatSlider.value = Mathf.Lerp(100, 0, time);
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+        overheatSlider.value = 0;
+        overheating = false;
         canFire = true;
     }
 }
