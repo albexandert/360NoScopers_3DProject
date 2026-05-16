@@ -1969,6 +1969,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5215083852890261247, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5307167190884024363, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2051,6 +2055,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711524222994202866, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163078888517910438, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163078888517910438, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163078888517910438, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804838894104500016, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587682545276984702, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962758177373378837, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962758177373378837, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8995635335917199957, guid: 0872991bb440adc408aeb281bc751460, type: 3}
