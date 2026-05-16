@@ -15,10 +15,15 @@ public class FirearmScript : MonoBehaviour
     public float firePower;
     public int shotHeatValue;
     public Slider overheatSlider;
+    public GameObject overheatObject;
+    public PlayerScript ps;
     // Start is called before the first frame update
     void Start()
     {
-        overheatSlider = GameObject.Find("OverheatBarSlider").GetComponent<Slider>();
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>(); 
+        overheatObject = GameObject.Find("OverheatBarSlider");
+        overheatSlider = overheatObject.GetComponent<Slider>();
+        overheatObject.SetActive(false);
         spawnPoint = gameObject.GetComponentInChildren<Transform>();
         canFire = true;
     }
@@ -29,6 +34,15 @@ public class FirearmScript : MonoBehaviour
         if (overheatSlider.value > 0 && !overheating)
         {
             overheatSlider.value -= Time.deltaTime * cooldownRate;
+        }
+
+        if (ps.currentItem != null && ps.currentItem.CompareTag("Firearm") && !overheatObject.activeInHierarchy)
+        {
+            overheatObject.SetActive(true);
+        }
+        else if (ps.currentItem == null && overheatObject.activeInHierarchy)
+        {
+            overheatObject.SetActive(false);
         }
     }
 
@@ -47,7 +61,7 @@ public class FirearmScript : MonoBehaviour
         {
             return;
         }
-        if(overheatSlider.value > 90)
+        if (overheatSlider.value > 90)
         {
             overheatSlider.value = 100;
             StartCoroutine(OverheatCooldown(overheatLockout));

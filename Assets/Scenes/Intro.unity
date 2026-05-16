@@ -1203,18 +1203,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4290588951982428999, guid: c898d563338d02b4596723a6bcfff045, type: 3}
-      propertyPath: cooldownRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290588951982428999, guid: c898d563338d02b4596723a6bcfff045, type: 3}
-      propertyPath: shotHeatValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290588951982428999, guid: c898d563338d02b4596723a6bcfff045, type: 3}
-      propertyPath: overheatLockout
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 9204978424281457618, guid: c898d563338d02b4596723a6bcfff045, type: 3}
       propertyPath: m_Name
       value: PlaceholderBlaster
@@ -2215,6 +2203,14 @@ PrefabInstance:
     - target: {fileID: 214478844893093665, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407310924251855608, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 407310924251855608, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -227.5
       objectReference: {fileID: 0}
     - target: {fileID: 831637303074832957, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
