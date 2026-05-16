@@ -2486,6 +2486,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathScreenManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1837408492193532074, guid: d71c200ae879dfe4abc1c350b3f55cc3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9035745685466326330, guid: d71c200ae879dfe4abc1c350b3f55cc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.6490135
