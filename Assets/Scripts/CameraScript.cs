@@ -16,18 +16,20 @@ public class CameraScript : MonoBehaviour
     public PlayerScript playerScript;
 
     public Slider sensitivitySlider;
-    public Slider FOVSlider;
+    public Slider fovSlider;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        if (mainCamera != null && FOVSlider != null)
+        sensitivitySlider = GameObject.Find("Sensitivity Slider").GetComponent<Slider>();
+        fovSlider = GameObject.Find("FOV Slider").GetComponent<Slider>();
+        if (mainCamera != null && fovSlider != null)
         {
-            FOVSlider.value = mainCamera.fieldOfView;
-            FOVSlider.onValueChanged.AddListener(ChangeFOV);
+            fovSlider.value = mainCamera.fieldOfView;
+            fovSlider.onValueChanged.AddListener(ChangeFOV);
         }
         mouseSensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
-        //search through the hierarchy for an object tagged as "Player" and sets the transform to our player variable
+        //search through the hierarchy for an object tagged as "Player" ansd sets the transform to our player variable
         player = GameObject.FindGameObjectWithTag("Player");
         sensitivitySlider.value = mouseSensitivity / 1;
 

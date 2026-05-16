@@ -30,12 +30,6 @@ public class PlayerScript : MonoBehaviour
     public Transform cameraPosition; //hold the Transform of the main camera
     public LayerMask interactMask; //holds the layers that out player will be able to intersct with
     public Transform targetPoint;
-    public GameObject projectile;
-    public Transform spawnPoint;
-    public float fireRate;
-    private bool canFire;
-    public float firePower;
-    public GameObject aimPoint;
 
     public static bool dialog;
     // Start is called before the first frame update
@@ -49,10 +43,6 @@ public class PlayerScript : MonoBehaviour
         targetPoint = GameObject.FindGameObjectWithTag("ShotTarget").transform;
         cameraPosition = GameObject.Find("Main Camera").transform;
         crouchHeight = 1f;
-        canFire = true;
-        fireRate = 0.2f;
-        firePower = 60f;
-        aimPoint = GameObject.Find("AimPointer");
     }
 
     // Update is called once per frame
@@ -116,18 +106,16 @@ public class PlayerScript : MonoBehaviour
 
         if (!itemHeld)
         { 
-            if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4f, interactMask))
+            if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit reach, 4.5f, interactMask))
             {
-                if (reach.collider.gameObject.CompareTag("Item") || reach.collider.gameObject.CompareTag("Weapon"))
+                if (reach.collider.gameObject.CompareTag("Item") || reach.collider.gameObject.CompareTag("Firearm"))
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         SoundManager.PlaySound(SoundType.PICKUP);
                         itemHeld = true;
                         currentItem = reach.collider.gameObject;
-                        currentItem.GetComponent<BaseItemScript>().isHeld = true;
-                        currentItem.GetComponent<Rigidbody>().useGravity = false;
-                        currentItem.GetComponent<Rigidbody>().isKinematic = true;
+                        currentItem.GetComponent<BaseItemScript>().OnPickUpStarted();
                     }
                 }
                 else if (reach.collider.gameObject.CompareTag("Button"))
@@ -146,29 +134,16 @@ public class PlayerScript : MonoBehaviour
             {
                 SoundManager.PlaySound(SoundType.DROP);
                 itemHeld = false;
-                currentItem.GetComponent<BaseItemScript>().isHeld = false;
-                currentItem.GetComponent<Rigidbody>().useGravity = true;
-                currentItem.GetComponent<Rigidbody>().isKinematic = false;
+                currentItem.GetComponent<BaseItemScript>().OnPickUpEnded();
                 currentItem = null;
             }
         }
 
-        if (itemHeld && currentItem.CompareTag("Weapon"))
+        if (itemHeld && currentItem.CompareTag("Firearm"))
         {
            if(Input.GetKey(KeyCode.Mouse0))
            {
-                if (canFire)
-                {
-                    SoundManager.PlaySound(SoundType.SHOOT);
-                    GameObject currentProjectile =  Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
-                    currentProjectile.GetComponent<Rigidbody>().AddForce(currentItem.transform.forward * firePower, ForceMode.Impulse);
-                    StartCoroutine(ProjectileCooldown(fireRate));
-                }
-                else
-                {
-                    return;
-                }
-                
+                currentItem.GetComponent<FirearmScript>().OnFire();
            }
         }
     }
@@ -196,7 +171,7 @@ public class PlayerScript : MonoBehaviour
 
     void LateUpdate()
     {
-        if (itemHeld && currentItem.CompareTag("Weapon"))
+        if (itemHeld && currentItem.CompareTag("Firearm"))
         {
             currentItem.transform.LookAt(targetPoint);
         }
@@ -217,14 +192,6 @@ public class PlayerScript : MonoBehaviour
         //returns true or false
         return Physics.Raycast(transform.position - new Vector3(0, .9f, 0), Vector3.down, out RaycastHit hit, .4f, groundMask);
     }
-
-    IEnumerator ProjectileCooldown(float cooldownTime)
-    {
-        canFire = false;
-        yield return new WaitForSeconds(cooldownTime);
-        canFire = true;
-    }
-
     public void takeDamage(float dmg)
     {
         playerHP -= dmg;

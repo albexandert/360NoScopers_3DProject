@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class BaseItemScript : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class BaseItemScript : MonoBehaviour
     public GameObject cam;
     public Transform itemPosition;
     public Collider itemCollider;
-    public Outline itemOutline; 
+    public Outline itemOutline;
+    public Rigidbody rb;
+    public GameObject oG;
 
 
     // Start is called before the first frame update
@@ -18,6 +21,8 @@ public class BaseItemScript : MonoBehaviour
         cam = GameObject.Find("Main Camera");
         itemCollider = GetComponent<Collider>();
         itemOutline = GetComponent<Outline>();
+        oG = GameObject.FindGameObjectWithTag("OG");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -25,15 +30,31 @@ public class BaseItemScript : MonoBehaviour
     {
         if (isHeld)
         {
-            itemCollider.enabled = false;
-            transform.parent = cam.transform;
+            
             transform.position = itemPosition.position;
-            itemOutline.enabled = false;
-        }
-        else
-        {
-            itemCollider.enabled = true;
-            gameObject.transform.SetParent(null);
+           
         }
     }
+
+    public void OnPickUpStarted()
+    {
+
+        itemOutline.enabled = false;
+        itemCollider.enabled = false;
+        isHeld = true;
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        transform.parent = cam.transform;
+    }
+
+    public void OnPickUpEnded()
+    {
+        itemCollider.enabled = true;
+        isHeld = false;
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        gameObject.transform.SetParent(oG.transform);
+        gameObject.transform.SetParent(null);
+    }
+
 }

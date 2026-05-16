@@ -6,12 +6,13 @@ TagManager:
   tags:
   - Wall
   - ShotTarget
-  - Weapon
   - Enemy
   - NPC
   - Item
   - Button
   - Exit
+  - OG
+  - Firearm
   layers:
   - Default
   - TransparentFX
