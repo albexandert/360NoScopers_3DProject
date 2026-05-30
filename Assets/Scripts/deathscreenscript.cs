@@ -30,9 +30,18 @@ public class deathscreenscript : MonoBehaviour
     }
     public void RestartGame()
     {
+        if (playerScript.itemHeld)
+        {
+            playerScript.itemHeld = false;
+            playerScript.currentItem.GetComponent<BaseItemScript>().OnPickUpEnded();
+            playerScript.currentItem = null;
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
         playerScript.dead = false;
+        playerScript.playerHP = 100;
+        playerScript.playerStamina = 100;
+        deathScreen.SetActive(false);
     }
 
     public void QuitGame()
@@ -50,6 +59,7 @@ public class deathscreenscript : MonoBehaviour
     }
     public void Menu()
     {
+        deathScreen.SetActive(false);
         SceneManager.LoadScene(TitleScreen);
     }
 }

@@ -21,7 +21,6 @@ public class BaseItemScript : MonoBehaviour
         cam = GameObject.Find("Main Camera");
         itemCollider = GetComponent<Collider>();
         itemOutline = GetComponent<Outline>();
-        oG = GameObject.FindGameObjectWithTag("OG");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -53,6 +52,7 @@ public class BaseItemScript : MonoBehaviour
         isHeld = false;
         rb.useGravity = true;
         rb.isKinematic = false;
+        oG = GameObject.FindGameObjectWithTag("OG");
         gameObject.transform.SetParent(oG.transform);
         gameObject.transform.SetParent(null);
     }

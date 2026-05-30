@@ -61,7 +61,7 @@ public class EnemyScript : MonoBehaviour
     public void takeDamage(float dmg)
     {
         Flash();
-        SoundManager.PlaySound(SoundType.MONSTERGROWL2);
+        //SoundManager.PlaySound(SoundType.MONSTERGROWL2);
         if (enemyHP <= 0f)
         {
             Destroy(gameObject);

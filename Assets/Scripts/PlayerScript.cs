@@ -30,8 +30,8 @@ public class PlayerScript : MonoBehaviour
     public Transform cameraPosition; //hold the Transform of the main camera
     public LayerMask interactMask; //holds the layers that out player will be able to intersct with
     public Transform targetPoint;
+    public GameObject overheatSlider;
 
-    public static bool dialog;
     // Start is called before the first frame update
     void Start()
     {
@@ -176,15 +176,6 @@ public class PlayerScript : MonoBehaviour
             currentItem.transform.LookAt(targetPoint);
         }
     }
-    /*
-    private void FixedUpdate()
-    {
-        if (!dialog)
-        {
-            return;
-        }
-    }
-    */
 
     bool isGrounded()
     {

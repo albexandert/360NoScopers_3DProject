@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 0}
-  baseSpeed: 6
-  sprintSpeed: 9
+  baseSpeed: 9
+  sprintSpeed: 14
   crouchSpeed: 4
   jumpForce: 10
   crouch: 0
@@ -237,11 +237,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetPoint: {fileID: 7546841928973074600}
-  projectile: {fileID: 8162435932959227568, guid: 7969ba4c55335374da4f6ed5e00bae5c, type: 3}
-  spawnPoint: {fileID: 2703455021351805219}
-  fireRate: 0
-  firePower: 0
-  aimPoint: {fileID: 8183556708316604981}
+  overheatSlider: {fileID: 0}
 --- !u!136 &8458945421053945612
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -499,7 +495,7 @@ MonoBehaviour:
   maxY: 70
   playerScript: {fileID: 2705332566000678109}
   sensitivitySlider: {fileID: 0}
-  FOVSlider: {fileID: 0}
+  fovSlider: {fileID: 0}
 --- !u!114 &2140982445274385534
 MonoBehaviour:
   m_ObjectHideFlags: 0

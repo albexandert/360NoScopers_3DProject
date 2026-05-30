@@ -20,8 +20,8 @@ public class FirearmScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>(); 
-        overheatObject = GameObject.Find("OverheatBarSlider");
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        overheatObject = ps.overheatSlider;
         overheatSlider = overheatObject.GetComponent<Slider>();
         overheatObject.SetActive(false);
         spawnPoint = gameObject.GetComponentInChildren<Transform>();
