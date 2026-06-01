@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/GameManagerScript.cs.meta
-guid: dc7bf2ab232e1d8488b7ca2774ed1fad
-========
-guid: 3c90d5e32303149458e11f2e11271be6
->>>>>>>> MergeBranch:Assets/Scripts/FirearmScript.cs.meta
+guid: 1b936d52b51a02e4fa0281dd2e37ec9d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
