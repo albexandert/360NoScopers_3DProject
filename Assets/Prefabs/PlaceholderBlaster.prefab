@@ -203,13 +203,15 @@ MonoBehaviour:
   projectile: {fileID: 8162435932959227568, guid: 7969ba4c55335374da4f6ed5e00bae5c, type: 3}
   spawnPoint: {fileID: 0}
   fireRate: 0.2
-  cooldownRate: 1
+  cooldownRate: 7
   overheatLockout: 3
   canFire: 0
   overheating: 0
   firePower: 60
-  shotHeatValue: 10
+  shotHeatValue: 15
   overheatSlider: {fileID: 0}
+  overheatObject: {fileID: 0}
+  ps: {fileID: 0}
 --- !u!114 &6831253706178594460
 MonoBehaviour:
   m_ObjectHideFlags: 0
