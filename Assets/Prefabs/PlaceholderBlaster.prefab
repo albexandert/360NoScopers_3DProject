@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8918765011376604986}
   - component: {fileID: 8063389497191367724}
   - component: {fileID: 8946886081373212949}
-  - component: {fileID: 4290588951982428999}
+  - component: {fileID: 6451383899884472982}
   - component: {fileID: 6831253706178594460}
   - component: {fileID: -7792240291740590393}
   m_Layer: 6
@@ -188,7 +188,7 @@ MonoBehaviour:
   itemOutline: {fileID: 6831253706178594460}
   rb: {fileID: 0}
   oG: {fileID: 0}
---- !u!114 &4290588951982428999
+--- !u!114 &6451383899884472982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,11 +197,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9204978424281457618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c90d5e32303149458e11f2e11271be6, type: 3}
+  m_Script: {fileID: 11500000, guid: dc7bf2ab232e1d8488b7ca2774ed1fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 8162435932959227568, guid: 7969ba4c55335374da4f6ed5e00bae5c, type: 3}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 4984956170958085478}
   fireRate: 0.2
   cooldownRate: 7
   overheatLockout: 3
