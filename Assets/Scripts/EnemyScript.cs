@@ -11,8 +11,9 @@ public class EnemyScript : MonoBehaviour
     private Color originalColor;
     public Color flashColor = Color.red;
     public float flashDuration = 0.01f;
-    public float soundDelayTime = 3f;
+    public float soundDelayTime;
     public GameObject player;
+    public bool isDelayed;
 
     private NavMeshAgent agent;
 
@@ -62,7 +63,11 @@ public class EnemyScript : MonoBehaviour
     public void takeDamage(float dmg)
     {
         Flash();
-        //SoundManager.PlaySound(SoundType.MONSTERGROWL2);
+        if (!isDelayed)
+        {
+            SoundManager.PlaySound(SoundType.MONSTERGROWL2);
+            StartCoroutine(HurtDelay(soundDelayTime));
+        }
         if (enemyHP <= 0f)
         {
             Destroy(gameObject);
@@ -81,11 +86,11 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-    IEnumerator HurtDelay()
+    IEnumerator HurtDelay(float delay)
     {
-        objectRenderer.material.color = flashColor;
-        yield return new WaitForSeconds(flashDuration);
-        objectRenderer.material.color = originalColor;
+        isDelayed = true;
+        yield return new WaitForSeconds(delay);
+        isDelayed = false;
 
     }
 
