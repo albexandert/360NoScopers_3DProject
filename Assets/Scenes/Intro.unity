@@ -1322,6 +1322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95758292053e8a5488e0c67b461ab9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1242864285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7748971420641864519, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+  m_PrefabInstance: {fileID: 7252057685667072573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1305615313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8498151222570754838, guid: 51869b96a89547f4a830e89b256e320a, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2120,7 +2129,7 @@ PrefabInstance:
     - target: {fileID: 2705332566000678109, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
       propertyPath: overheatSlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1242864285}
     - target: {fileID: 3353087829715128031, guid: 56f45fb6d825bbc48ad06c7909178a2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.92

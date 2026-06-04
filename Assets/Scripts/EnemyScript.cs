@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     private Color originalColor;
     public Color flashColor = Color.red;
     public float flashDuration = 0.01f;
+    public float soundDelay = 3f;
     public GameObject player;
 
     private NavMeshAgent agent;
@@ -78,6 +79,14 @@ public class EnemyScript : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
         objectRenderer.material.color = originalColor;
         
+    }
+
+    IEnumerator HurtDelay()
+    {
+        objectRenderer.material.color = flashColor;
+        yield return new WaitForSeconds(flashDuration);
+        objectRenderer.material.color = originalColor;
+
     }
 
     void Patrol()
