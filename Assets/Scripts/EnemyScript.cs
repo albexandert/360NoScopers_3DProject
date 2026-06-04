@@ -11,7 +11,7 @@ public class EnemyScript : MonoBehaviour
     private Color originalColor;
     public Color flashColor = Color.red;
     public float flashDuration = 0.01f;
-    public float soundDelay = 3f;
+    public float soundDelayTime = 3f;
     public GameObject player;
 
     private NavMeshAgent agent;
