@@ -10,7 +10,7 @@ public class ProjectileScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 0.5f)
+        if (timer >= 0.75f)
         {
             Destroy(gameObject);
         }
