@@ -12,14 +12,15 @@ public class MedkitBehavior : MonoBehaviour
     public bool isHealing = false;
 
     public Slider healthSlider;
+    public GameObject patchingOb;
     public Slider patchingSlider;
-
-    public GameObject gameText;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<BaseItemScript>();
+        baseItem = GetComponent<BaseItemScript>();
+        patchingSlider = patchingOb.GetComponent<Slider>();
+        patchingOb.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,19 +33,19 @@ public class MedkitBehavior : MonoBehaviour
                 if (healthSlider.value >= 100)
                 {
                     isHealing = false;
-                    gameText.SetActive(true);
-
                 }
                 else if(healthSlider.value < 100)
                 {
+                    patchingOb.SetActive(true);
                     isHealing = true;
                     patchingSlider.value += Time.deltaTime * healingSpeed;
                 }
             }
-        }
-        if (gameText == true)
-        {
-
+            else if (Input.GetKeyUp(KeyCode.E))
+            {
+                patchingOb.SetActive(false);
+                isHealing = false;
+            }
         }
     }
 }

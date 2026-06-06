@@ -416,16 +416,16 @@ RectTransform:
   m_GameObject: {fileID: 161440392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1845989606}
   - {fileID: 1315816087}
   m_Father: {fileID: 1460510108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 320, y: -50}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 470, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &197324599
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 197324603}
   - component: {fileID: 197324602}
   - component: {fileID: 197324601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 485207798}
   - component: {fileID: 485207797}
   - component: {fileID: 485207796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 506745321}
   - component: {fileID: 506745320}
   - component: {fileID: 506745319}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 935668567}
   - component: {fileID: 935668566}
   - component: {fileID: 935668565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1864,9 +1864,10 @@ GameObject:
   - component: {fileID: 1305615318}
   - component: {fileID: 1305615321}
   - component: {fileID: 1305615320}
-  m_Layer: 0
+  - component: {fileID: 1305615322}
+  m_Layer: 6
   m_Name: Medkit
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2008,11 +2009,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseItem: {fileID: 0}
-  healingSpeed: 3
+  healingSpeed: 30
   isHealing: 0
   healthSlider: {fileID: 708843891}
+  patchingOb: {fileID: 161440392}
   patchingSlider: {fileID: 161440393}
-  gameText: {fileID: 1425111365}
 --- !u!114 &1305615321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2032,6 +2033,33 @@ MonoBehaviour:
   itemOutline: {fileID: 1305615318}
   rb: {fileID: 0}
   oG: {fileID: 0}
+--- !u!54 &1305615322
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305615313}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1315816086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,7 +2685,7 @@ GameObject:
   - component: {fileID: 1713259292}
   - component: {fileID: 1713259291}
   - component: {fileID: 1713259290}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2848,7 +2876,7 @@ GameObject:
   - component: {fileID: 1853719564}
   - component: {fileID: 1853719563}
   - component: {fileID: 1853719562}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3058,7 +3086,7 @@ GameObject:
   - component: {fileID: 1981319008}
   - component: {fileID: 1981319007}
   - component: {fileID: 1981319006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3367,7 +3395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215083852890261247, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5307167190884024363, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_Name
@@ -3464,6 +3492,10 @@ PrefabInstance:
     - target: {fileID: 6163078888517910438, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804838894104500016, guid: 0872991bb440adc408aeb281bc751460, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962758177373378837, guid: 0872991bb440adc408aeb281bc751460, type: 3}
       propertyPath: m_AnchorMax.x
