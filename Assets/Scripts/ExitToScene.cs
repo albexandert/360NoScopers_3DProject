@@ -11,7 +11,16 @@ public class ExitToScene : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(nextScene);
+            if (gameObject.CompareTag("Finish"))
+            {
+                UnityEditor.EditorApplication.isPlaying = false;
+                Application.Quit();
+            }
+            else
+            {
+                SceneManager.LoadScene(nextScene);
+            }
+            
         }
     }
 }

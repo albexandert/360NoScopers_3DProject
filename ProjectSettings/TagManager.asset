@@ -13,6 +13,7 @@ TagManager:
   - Exit
   - OG
   - Firearm
+  - Weapon
   layers:
   - Default
   - TransparentFX

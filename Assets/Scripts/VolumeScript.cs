@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class VolumeScript : MonoBehaviour
 {
     public Slider volumeSlider;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         if (!PlayerPrefs.HasKey("musicVolume"))
         {
-            PlayerPrefs.SetFloat("musicVolume", 1);
+            PlayerPrefs.SetFloat("musicVolume", 0.25f);
             Load();
         }
         else
@@ -33,4 +33,5 @@ public class VolumeScript : MonoBehaviour
     {
         PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
     }
+    
 }

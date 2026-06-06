@@ -7,19 +7,22 @@ public class MedkitBehavior : MonoBehaviour
 {
     public BaseItemScript baseItem;
 
-    public float healingSpeed = 3f;
+    public float healingSpeed;
 
     public bool isHealing = false;
 
-    public Slider healthSlider;
+    public PlayerScript ps;
+    public GameObject patchingOb;
     public Slider patchingSlider;
-
-    public GameObject gameText;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<BaseItemScript>();
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        patchingOb = ps.patchingSlider;
+        patchingSlider = patchingOb.GetComponent<Slider>();
+        baseItem = GetComponent<BaseItemScript>();
+        patchingOb.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,22 +32,31 @@ public class MedkitBehavior : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E))
             {
-                if (healthSlider.value >= 100)
+                if (ps.playerHP >= 100)
                 {
                     isHealing = false;
-                    gameText.SetActive(true);
-
                 }
-                else if(healthSlider.value < 100)
+                else if(ps.playerHP < 100)
                 {
+                    patchingOb.SetActive(true);
                     isHealing = true;
                     patchingSlider.value += Time.deltaTime * healingSpeed;
+                    if (patchingSlider.value >= 100)
+                    {
+                        ps.playerHP = 100;
+                        baseItem.OnPickUpEnded();
+                        patchingSlider.value = 0;
+                        patchingOb.SetActive(false);
+                        Destroy(gameObject);
+                    }
                 }
             }
-        }
-        if (gameText == true)
-        {
-
+            else if (Input.GetKeyUp(KeyCode.E))
+            {
+                patchingOb.SetActive(false);
+                patchingSlider.value = 0;
+                isHealing = false;
+            }
         }
     }
 }

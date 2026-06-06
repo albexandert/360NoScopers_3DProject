@@ -12,7 +12,7 @@ public class BaseItemScript : MonoBehaviour
     public Outline itemOutline;
     public Rigidbody rb;
     public GameObject oG;
-
+    public PlayerScript ps;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,7 @@ public class BaseItemScript : MonoBehaviour
         itemCollider = GetComponent<Collider>();
         itemOutline = GetComponent<Outline>();
         rb = GetComponent<Rigidbody>();
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class BaseItemScript : MonoBehaviour
 
     public void OnPickUpStarted()
     {
-
+        ps.itemHeld = true;
         itemOutline.enabled = false;
         itemCollider.enabled = false;
         isHeld = true;
@@ -48,6 +49,7 @@ public class BaseItemScript : MonoBehaviour
 
     public void OnPickUpEnded()
     {
+        ps.itemHeld = false;
         itemCollider.enabled = true;
         isHeld = false;
         rb.useGravity = true;

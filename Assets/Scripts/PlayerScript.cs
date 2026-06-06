@@ -31,6 +31,7 @@ public class PlayerScript : MonoBehaviour
     public LayerMask interactMask; //holds the layers that out player will be able to intersct with
     public Transform targetPoint;
     public GameObject overheatSlider;
+    public GameObject patchingSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -113,7 +114,6 @@ public class PlayerScript : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         SoundManager.PlaySound(SoundType.PICKUP);
-                        itemHeld = true;
                         currentItem = reach.collider.gameObject;
                         currentItem.GetComponent<BaseItemScript>().OnPickUpStarted();
                     }
@@ -133,7 +133,6 @@ public class PlayerScript : MonoBehaviour
             if (itemHeld)
             {
                 SoundManager.PlaySound(SoundType.DROP);
-                itemHeld = false;
                 currentItem.GetComponent<BaseItemScript>().OnPickUpEnded();
                 currentItem = null;
             }

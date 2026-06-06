@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 30
-  dmg: 5
+  dmg: 1
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
   soundDelayTime: 3
