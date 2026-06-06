@@ -48,7 +48,6 @@ public class deathscreenscript : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Player has succesfully quit the game.");
-        UnityEditor.EditorApplication.isPlaying = false;
     }
     public void Pause()
     {

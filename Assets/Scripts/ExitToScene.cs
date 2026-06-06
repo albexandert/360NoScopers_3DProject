@@ -13,7 +13,6 @@ public class ExitToScene : MonoBehaviour
         {
             if (gameObject.CompareTag("Finish"))
             {
-                UnityEditor.EditorApplication.isPlaying = false;
                 Application.Quit();
             }
             else
